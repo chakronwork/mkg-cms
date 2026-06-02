@@ -8,7 +8,11 @@
         <div class="row g-3">
             <div class="col-md-6"><label class="form-label">Phone</label><input class="form-control" name="phone" value="<?= e($settings['phone'] ?? '') ?>"></div>
             <div class="col-md-6"><label class="form-label">Email</label><input class="form-control" name="email" value="<?= e($settings['email'] ?? '') ?>"></div>
-            <div class="col-md-6"><label class="form-label">LINE URL</label><input class="form-control" name="line_url" value="<?= e($settings['line_url'] ?? '') ?>"></div>
+            <div class="col-md-6">
+                <label class="form-label">LINE URL</label>
+                <input class="form-control" name="line_url" value="<?= e($settings['line_url'] ?? '') ?>">
+                <div class="form-text">ใส่ URL เต็ม เช่น https://lin.ee/... หรือ LINE ID เช่น @w864</div>
+            </div>
             <div class="col-md-6"><label class="form-label">Facebook URL</label><input class="form-control" name="facebook_url" value="<?= e($settings['facebook_url'] ?? '') ?>"></div>
             <div class="col-md-6"><label class="form-label">Logo Media ID</label><input class="form-control" name="logo_media_id" value="<?= e($settings['logo_media_id'] ?? '') ?>"></div>
             <div class="col-md-6"><label class="form-label">Favicon Media ID</label><input class="form-control" name="favicon_media_id" value="<?= e($settings['favicon_media_id'] ?? '') ?>"></div>

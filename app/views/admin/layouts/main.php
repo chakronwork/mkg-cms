@@ -5,6 +5,7 @@ $adminBase = rtrim((string) parse_url(admin_url(), PHP_URL_PATH), '/');
 $isAdminSection = static function (string $segment) use ($currentPath, $adminBase): bool {
     return str_starts_with($currentPath, $adminBase . '/' . trim($segment, '/'));
 };
+$tinymceScriptUrl = (string) app_config('tinymce_script_url', 'https://cdn.jsdelivr.net/npm/tinymce@6/tinymce.min.js');
 ?>
 <!doctype html>
 <html lang="th">
@@ -14,7 +15,7 @@ $isAdminSection = static function (string $segment) use ($currentPath, $adminBas
     <title><?= e($title) ?></title>
     <meta name="color-scheme" content="light">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="<?= e($tinymceScriptUrl) ?>" referrerpolicy="origin"></script>
     <style>
         body { background: #f4f6f9; }
         .admin-shell { min-height: 100vh; }
@@ -65,7 +66,9 @@ $isAdminSection = static function (string $segment) use ($currentPath, $adminBas
     </div>
 </div>
 <script>
-tinymce.init({ selector: '.tinymce', menubar: false, height: 260 });
+if (window.tinymce) {
+    tinymce.init({ selector: '.tinymce', menubar: false, height: 260 });
+}
 </script>
 </body>
 </html>

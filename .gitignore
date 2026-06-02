@@ -1,5 +1,9 @@
 # Local configuration
+.env
+.env.*
+!.env.example
 config/database.php
+config/secrets.php
 
 # Runtime files
 logs/*.log

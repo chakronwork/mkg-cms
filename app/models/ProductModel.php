@@ -128,7 +128,7 @@ final class ProductModel extends Model
             ':name' => trim((string) $data['name']),
             ':slug' => trim((string) $data['slug']),
             ':description' => trim((string) ($data['description'] ?? '')),
-            ':line_url' => trim((string) ($data['line_url'] ?? '')),
+            ':line_url' => normalize_line_url($data['line_url'] ?? ''),
             ':qr_code_media_id' => $qrId > 0 ? $qrId : null,
             ':seo_title' => trim((string) ($data['seo_title'] ?? '')),
             ':seo_description' => trim((string) ($data['seo_description'] ?? '')),

@@ -2,7 +2,13 @@
 
 declare(strict_types=1);
 
-$app = require dirname(__DIR__) . '/config/app.php';
+if (!defined('BASE_PATH')) {
+    define('BASE_PATH', dirname(__DIR__));
+}
+
+load_env(BASE_PATH . '/.env');
+
+$app = require BASE_PATH . '/config/app.php';
 
 if (APP_ENV === 'production') {
     ini_set('display_errors', '0');
@@ -45,6 +51,30 @@ spl_autoload_register(static function (string $class): void {
     }
 });
 
+function load_env(string $path): void
+{
+    if (!is_file($path) || !is_readable($path)) {
+        return;
+    }
+
+    foreach (file($path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) ?: [] as $line) {
+        $line = trim($line);
+        if ($line === '' || str_starts_with($line, '#') || !str_contains($line, '=')) {
+            continue;
+        }
+
+        [$key, $value] = array_map('trim', explode('=', $line, 2));
+        if ($key === '' || getenv($key) !== false) {
+            continue;
+        }
+
+        $value = trim($value, "\"'");
+        putenv($key . '=' . $value);
+        $_ENV[$key] = $value;
+        $_SERVER[$key] = $value;
+    }
+}
+
 function app_config(string $key, mixed $default = null): mixed
 {
     global $app;
@@ -64,4 +94,26 @@ function base_url(string $path = ''): string
 function admin_url(string $path = ''): string
 {
     return rtrim((string) app_config('admin_url'), '/') . '/' . ltrim($path, '/');
+}
+
+function normalize_line_url(mixed $value): string
+{
+    $url = trim((string) $value);
+    if ($url === '') {
+        return '';
+    }
+
+    if (preg_match('/^(https?:\/\/|line:\/\/)/i', $url)) {
+        return $url;
+    }
+
+    if (str_starts_with($url, '@')) {
+        return 'https://line.me/R/ti/p/' . rawurlencode($url);
+    }
+
+    if (preg_match('/^(lin\.ee|line\.me|page\.line\.me)\//i', $url)) {
+        return 'https://' . $url;
+    }
+
+    return $url;
 }

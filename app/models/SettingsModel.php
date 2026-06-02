@@ -25,7 +25,7 @@ final class SettingsModel extends Model
             ':site_description' => trim((string) ($data['site_description'] ?? '')),
             ':phone' => trim((string) ($data['phone'] ?? '')),
             ':email' => trim((string) ($data['email'] ?? '')),
-            ':line_url' => trim((string) ($data['line_url'] ?? '')),
+            ':line_url' => normalize_line_url($data['line_url'] ?? ''),
             ':facebook_url' => trim((string) ($data['facebook_url'] ?? '')),
             ':address' => trim((string) ($data['address'] ?? '')),
             ':google_map_embed' => trim((string) ($data['google_map_embed'] ?? '')),

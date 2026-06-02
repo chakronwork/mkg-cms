@@ -5,5 +5,5 @@
 <?php endforeach; ?>
 </div>
 <div class="mb-3"><?= nl2br(e($product['description'] ?? '')) ?></div>
-<?php if (!empty($product['line_url'])): ?><a class="btn btn-success" href="<?= e($product['line_url']) ?>">Contact on LINE</a><?php endif; ?>
+<?php if (!empty($product['line_url'])): ?><a class="btn btn-success" href="<?= e(normalize_line_url($product['line_url'])) ?>">Contact on LINE</a><?php endif; ?>
 <?php if (!empty($product['qr_code_path'])): ?><div class="mt-3"><img style="max-width:180px" src="<?= e(app_config('upload_url') . '/' . $product['qr_code_path']) ?>" alt="LINE QR code"></div><?php endif; ?>
