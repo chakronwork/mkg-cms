@@ -141,6 +141,9 @@
 | FE-06 | Render site logo/favicon from settings | DONE |
 | FE-07 | Add responsive Bootstrap layout | DONE |
 | FE-08 | Add fallback SEO metadata | DONE |
+| FE-09 | Add homepage service/product/portfolio section structure | DONE |
+| FE-10 | Add CMS-managed hero promotion slider | DONE |
+| FE-11 | Refine responsive public/admin navigation and homepage sections | DONE |
 
 ---
 
