@@ -1,0 +1,19 @@
+# Local configuration
+config/database.php
+
+# Runtime files
+logs/*.log
+storage/sessions/*
+!storage/sessions/.htaccess
+
+# Uploaded media
+public/uploads/*
+!public/uploads/.htaccess
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+*.tmp
+*.bak
+.vscode/
+.idea/
