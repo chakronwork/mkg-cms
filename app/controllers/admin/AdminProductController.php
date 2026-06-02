@@ -17,7 +17,17 @@ final class AdminProductController extends Controller
 
     public function index(): void
     {
-        $this->view('admin/products/list', ['title' => 'Products', 'products' => $this->products->all()]);
+        $perPage = 10;
+        $page = max(1, (int) ($_GET['page'] ?? 1));
+        $total = $this->products->countAll();
+        $offset = ($page - 1) * $perPage;
+
+        $this->view('admin/products/list', [
+            'title' => 'สินค้า',
+            'products' => $this->products->paginate($perPage, $offset),
+            'currentPage' => $page,
+            'totalPages' => max(1, (int) ceil($total / $perPage)),
+        ]);
     }
 
     public function create(): void
@@ -60,7 +70,7 @@ final class AdminProductController extends Controller
         }
 
         $this->view('admin/products/form', [
-            'title' => $product ? 'Edit Product' : 'Create Product',
+            'title' => $product ? 'แก้ไขสินค้า' : 'เพิ่มสินค้า',
             'product' => $product,
             'mediaItems' => $this->media->all(),
             'selectedMedia' => $selectedMedia,

@@ -5,7 +5,7 @@
     <input type="hidden" name="csrf_token" value="<?= e($csrfToken) ?>">
     <div class="mb-3"><label class="form-label">Title</label><input class="form-control" name="title" value="<?= e($portfolio['title'] ?? '') ?>" required></div>
     <div class="mb-3"><label class="form-label">Slug</label><input class="form-control" name="slug" value="<?= e($portfolio['slug'] ?? '') ?>" required></div>
-    <div class="mb-3"><label class="form-label">Description</label><textarea class="form-control tinymce" name="description"><?= e($portfolio['description'] ?? '') ?></textarea></div>
+    <div class="mb-3"><label class="form-label">Description</label><textarea class="form-control" name="description" rows="6"><?= e($portfolio['description'] ?? '') ?></textarea></div>
     <div class="mb-3"><label class="form-label">Status</label><select class="form-select" name="status"><option value="published" <?= ($portfolio['status'] ?? 'published') === 'published' ? 'selected' : '' ?>>Published</option><option value="draft" <?= ($portfolio['status'] ?? '') === 'draft' ? 'selected' : '' ?>>Draft</option></select></div>
     <div class="form-text mb-3">Select portfolio images from the media picker below. Selected order follows media ID order.</div>
     <div class="mb-3"><label class="form-label">SEO Title</label><input class="form-control" name="seo_title" value="<?= e($portfolio['seo_title'] ?? '') ?>"></div>

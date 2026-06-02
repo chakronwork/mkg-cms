@@ -1,4 +1,4 @@
-<h1>Contact</h1>
+<h1>ติดต่อเรา</h1>
 <?php foreach ($sections as $section): ?><div class="mb-4"><?= $section['content'] ?></div><?php endforeach; ?>
 <div class="row g-4">
     <div class="col-md-5">

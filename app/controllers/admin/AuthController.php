@@ -35,7 +35,7 @@ final class AuthController extends Controller
         }
 
         $this->view('admin/auth/login', [
-            'title' => 'Admin Login',
+            'title' => 'เข้าสู่ระบบผู้ดูแล',
             'csrfToken' => Csrf::generate(),
             'errors' => $errors,
             'username' => $username,

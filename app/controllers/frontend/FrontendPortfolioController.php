@@ -20,7 +20,7 @@ final class FrontendPortfolioController extends Controller
     {
         $settings = $this->settings->get();
         $this->view('frontend/portfolio/index', [
-            'title' => 'Portfolio',
+            'title' => 'ผลงาน',
             'metaDescription' => $settings['site_description'] ?? '',
             'portfolios' => $this->portfolios->published(),
             'settings' => $settings,

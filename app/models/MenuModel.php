@@ -48,4 +48,15 @@ final class MenuModel extends Model
         $stmt = $this->db->prepare('DELETE FROM menus WHERE id = :id');
         $stmt->execute([':id' => $id]);
     }
+
+    public function reorder(array $ids): void
+    {
+        $stmt = $this->db->prepare('UPDATE menus SET sort_order = :sort_order WHERE id = :id');
+        foreach (array_values(array_filter(array_map('intval', $ids))) as $index => $id) {
+            $stmt->execute([
+                ':sort_order' => ($index + 1) * 10,
+                ':id' => $id,
+            ]);
+        }
+    }
 }

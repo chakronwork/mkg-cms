@@ -158,11 +158,11 @@ FROM pages WHERE slug IN ('about', 'contact');
 
 INSERT INTO menus (title, url, target, sort_order, is_active)
 VALUES
-('Home', '/', '_self', 10, 1),
-('About', '/about', '_self', 20, 1),
-('Products', '/products', '_self', 30, 1),
-('Portfolio', '/portfolio', '_self', 40, 1),
-('Contact', '/contact', '_self', 50, 1);
+('หน้าแรก', '/', '_self', 10, 1),
+('เกี่ยวกับเรา', '/about', '_self', 20, 1),
+('สินค้า', '/products', '_self', 30, 1),
+('ผลงาน', '/portfolio', '_self', 40, 1),
+('ติดต่อเรา', '/contact', '_self', 50, 1);
 
 INSERT INTO settings (site_name, site_description, phone, email, line_url, facebook_url, address, google_map_embed, updated_at)
 VALUES ('Mae Klong Graphic', 'Custom sign and print shop CMS.', '', '', '', '', '', '', NOW());

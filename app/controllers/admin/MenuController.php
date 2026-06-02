@@ -13,11 +13,23 @@ final class MenuController extends Controller
         $this->menus = new MenuModel();
     }
 
-    public function index(array $errors = []): void
+    public function index(array $errors = [], array $formValues = []): void
     {
+        $menus = $this->menus->all();
+        $editingId = (int) ($formValues['id'] ?? 0);
+        if ($editingId > 0) {
+            foreach ($menus as $index => $menu) {
+                if ((int) $menu['id'] === $editingId) {
+                    $menus[$index] = array_merge($menu, $formValues);
+                    break;
+                }
+            }
+        }
+
         $this->view('admin/menus/index', [
-            'title' => 'Menus',
-            'menus' => $this->menus->all(),
+            'title' => 'เมนู',
+            'menus' => $menus,
+            'formValues' => $editingId > 0 ? [] : $formValues,
             'errors' => $errors,
             'csrfToken' => Csrf::generate(),
         ]);
@@ -27,7 +39,7 @@ final class MenuController extends Controller
     {
         $this->verifyCsrf();
         if (trim((string) ($_POST['title'] ?? '')) === '' || trim((string) ($_POST['url'] ?? '')) === '') {
-            $this->index(['Title and URL are required.']);
+            $this->index(['กรุณากรอกชื่อเมนูและ URL'], $_POST);
             return;
         }
 
@@ -40,6 +52,14 @@ final class MenuController extends Controller
     {
         $this->verifyCsrf();
         $this->menus->delete((int) $id);
+        $this->redirect(admin_url('menus'));
+    }
+
+    public function reorder(): void
+    {
+        $this->verifyCsrf();
+        $ids = $_POST['menu_ids'] ?? [];
+        $this->menus->reorder(is_array($ids) ? $ids : []);
         $this->redirect(admin_url('menus'));
     }
 }

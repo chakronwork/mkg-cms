@@ -31,6 +31,7 @@ $router->add('POST', '/admin/media/{id}/alt', 'MediaController', 'alt');
 $router->add('POST', '/admin/media/{id}/delete', 'MediaController', 'delete');
 $router->add('GET', '/admin/menus', 'MenuController', 'index');
 $router->add('POST', '/admin/menus', 'MenuController', 'save');
+$router->add('POST', '/admin/menus/reorder', 'MenuController', 'reorder');
 $router->add('POST', '/admin/menus/{id}/delete', 'MenuController', 'delete');
 $router->add('GET', '/admin/settings', 'SettingsController', 'index');
 $router->add('POST', '/admin/settings', 'SettingsController', 'index');

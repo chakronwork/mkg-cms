@@ -1,4 +1,4 @@
-<h1 class="mb-3">Portfolio</h1>
+<h1 class="mb-3">ผลงาน</h1>
 <div class="row g-3">
 <?php foreach ($portfolios as $portfolio): ?>
     <div class="col-md-4">

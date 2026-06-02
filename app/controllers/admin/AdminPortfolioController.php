@@ -17,7 +17,7 @@ final class AdminPortfolioController extends Controller
 
     public function index(): void
     {
-        $this->view('admin/portfolios/list', ['title' => 'Portfolios', 'portfolios' => $this->portfolios->all()]);
+        $this->view('admin/portfolios/list', ['title' => 'ผลงาน', 'portfolios' => $this->portfolios->all()]);
     }
 
     public function create(): void
@@ -63,7 +63,7 @@ final class AdminPortfolioController extends Controller
         }
 
         $this->view('admin/portfolios/form', [
-            'title' => $portfolio ? 'Edit Portfolio' : 'Create Portfolio',
+            'title' => $portfolio ? 'แก้ไขผลงาน' : 'เพิ่มผลงาน',
             'portfolio' => $portfolio,
             'mediaItems' => $this->media->all(),
             'selectedMedia' => $selectedMedia,

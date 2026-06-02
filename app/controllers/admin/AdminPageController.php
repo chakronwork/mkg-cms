@@ -15,7 +15,7 @@ final class AdminPageController extends Controller
 
     public function index(): void
     {
-        $this->view('admin/pages/list', ['title' => 'Pages', 'pages' => $this->pages->all()]);
+        $this->view('admin/pages/list', ['title' => 'หน้าเว็บ', 'pages' => $this->pages->all()]);
     }
 
     public function edit(string $id): void
@@ -28,6 +28,7 @@ final class AdminPageController extends Controller
         }
 
         $errors = [];
+        $sections = $this->pages->sections($pageId);
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $this->verifyCsrf();
             if (trim((string) ($_POST['title'] ?? '')) === '') {
@@ -40,12 +41,19 @@ final class AdminPageController extends Controller
             }
 
             $page = array_merge($page, $_POST);
+            $postedSections = is_array($_POST['sections'] ?? null) ? $_POST['sections'] : [];
+            foreach ($sections as $index => $section) {
+                $sectionId = (string) $section['id'];
+                if (isset($postedSections[$sectionId]) && is_array($postedSections[$sectionId])) {
+                    $sections[$index] = array_merge($section, $postedSections[$sectionId]);
+                }
+            }
         }
 
         $this->view('admin/pages/form', [
-            'title' => 'Edit Page',
+            'title' => 'แก้ไขหน้าเว็บ',
             'page' => $page,
-            'sections' => $this->pages->sections($pageId),
+            'sections' => $sections,
             'errors' => $errors,
             'csrfToken' => Csrf::generate(),
         ]);

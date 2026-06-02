@@ -68,11 +68,11 @@
 
 | ID | Task | Status |
 |---|---|---|
-| ADM-01 | Create AdminLTE layout shell | TODO |
+| ADM-01 | Create AdminLTE layout shell | DONE |
 | ADM-02 | Create dashboard page | DONE |
 | ADM-03 | Implement page list/edit flow | DONE |
 | ADM-04 | Implement page section editing with TinyMCE | DONE |
-| ADM-05 | Implement menu CRUD/reorder | TODO |
+| ADM-05 | Implement menu CRUD/reorder | DONE |
 | ADM-06 | Implement site settings form | DONE |
 | ADM-07 | Implement SEO fields for pages | DONE |
 | ADM-08 | Add form validation and error messages | DONE |
@@ -101,7 +101,7 @@
 | ID | Task | Status |
 |---|---|---|
 | PRD-01 | Create product model | DONE |
-| PRD-02 | Create admin product list with pagination | TODO |
+| PRD-02 | Create admin product list with pagination | DONE |
 | PRD-03 | Create product create/edit forms | DONE |
 | PRD-04 | Validate required fields and unique slug | DONE |
 | PRD-05 | Save product images and sort order | DONE |
@@ -138,7 +138,7 @@
 | FE-03 | Render home page sections | DONE |
 | FE-04 | Render about page sections | DONE |
 | FE-05 | Render contact page with settings and map | DONE |
-| FE-06 | Render site logo/favicon from settings | TODO |
+| FE-06 | Render site logo/favicon from settings | DONE |
 | FE-07 | Add responsive Bootstrap layout | DONE |
 | FE-08 | Add fallback SEO metadata | DONE |
 
@@ -155,7 +155,7 @@ Before release, verify:
 - [x] Production config disables error display
 - [x] Database schema imports cleanly on MySQL 8.0
 - [x] Public pages show only published, non-deleted content
-- [ ] Admin forms preserve values after validation failure
+- [x] Admin forms preserve values after validation failure
 
 ---
 

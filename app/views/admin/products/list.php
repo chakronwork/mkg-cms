@@ -14,3 +14,14 @@
 </tr>
 <?php endforeach; ?>
 </tbody></table></div></div>
+<?php if (($totalPages ?? 1) > 1): ?>
+<nav class="mt-3">
+    <ul class="pagination mb-0">
+        <?php for ($page = 1; $page <= $totalPages; $page++): ?>
+            <li class="page-item <?= $page === $currentPage ? 'active' : '' ?>">
+                <a class="page-link" href="<?= e(admin_url('products?page=' . $page)) ?>"><?= e((string) $page) ?></a>
+            </li>
+        <?php endfor; ?>
+    </ul>
+</nav>
+<?php endif; ?>

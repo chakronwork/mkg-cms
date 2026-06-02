@@ -20,6 +20,18 @@ final class ProductModel extends Model
         return $stmt->fetchAll();
     }
 
+    public function countAll(): int
+    {
+        $stmt = $this->db->prepare('SELECT COUNT(*) FROM products WHERE deleted_at IS NULL');
+        $stmt->execute();
+        return (int) $stmt->fetchColumn();
+    }
+
+    public function paginate(int $limit, int $offset): array
+    {
+        return $this->all($limit, $offset);
+    }
+
     public function published(): array
     {
         $stmt = $this->db->prepare(

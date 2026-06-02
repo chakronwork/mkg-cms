@@ -8,7 +8,7 @@
             <div class="card"><div class="card-body">
                 <div class="mb-3"><label class="form-label">Name</label><input class="form-control" name="name" value="<?= e($product['name'] ?? '') ?>" required></div>
                 <div class="mb-3"><label class="form-label">Slug</label><input class="form-control" name="slug" value="<?= e($product['slug'] ?? '') ?>" required></div>
-                <div class="mb-3"><label class="form-label">Description</label><textarea class="form-control tinymce" name="description"><?= e($product['description'] ?? '') ?></textarea></div>
+                <div class="mb-3"><label class="form-label">Description</label><textarea class="form-control" name="description" rows="6"><?= e($product['description'] ?? '') ?></textarea></div>
                 <div class="mb-3"><label class="form-label">LINE URL</label><input class="form-control" name="line_url" value="<?= e($product['line_url'] ?? '') ?>"></div>
                 <div class="mb-3"><label class="form-label">SEO Title</label><input class="form-control" name="seo_title" value="<?= e($product['seo_title'] ?? '') ?>"></div>
                 <div class="mb-3"><label class="form-label">SEO Description</label><textarea class="form-control" name="seo_description"><?= e($product['seo_description'] ?? '') ?></textarea></div>

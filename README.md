@@ -35,7 +35,7 @@ Seed admin login for local setup:
 
 ```text
 Username: admin
-Password: admin123
+Password: xxxx
 ```
 
 Change this password before using the CMS outside local development.

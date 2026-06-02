@@ -7,6 +7,6 @@ final class DashboardController extends Controller
     public function index(): void
     {
         Auth::requireAdmin();
-        $this->view('admin/dashboard/index', ['title' => 'Dashboard']);
+        $this->view('admin/dashboard/index', ['title' => 'แดชบอร์ด']);
     }
 }

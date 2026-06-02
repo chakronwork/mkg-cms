@@ -16,7 +16,7 @@ final class MediaController extends Controller
     public function index(): void
     {
         $this->view('admin/media/index', [
-            'title' => 'Media Library',
+            'title' => 'คลังสื่อ',
             'mediaItems' => $this->media->all(),
             'errors' => [],
             'csrfToken' => Csrf::generate(),
@@ -32,7 +32,7 @@ final class MediaController extends Controller
         }
 
         $this->view('admin/media/index', [
-            'title' => 'Media Library',
+            'title' => 'คลังสื่อ',
             'mediaItems' => $this->media->all(),
             'errors' => $errors,
             'csrfToken' => Csrf::generate(),

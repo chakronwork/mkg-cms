@@ -20,7 +20,7 @@ final class FrontendProductController extends Controller
     {
         $settings = $this->settings->get();
         $this->view('frontend/products/index', [
-            'title' => 'Products',
+            'title' => 'สินค้า',
             'metaDescription' => $settings['site_description'] ?? '',
             'products' => $this->products->published(),
             'settings' => $settings,

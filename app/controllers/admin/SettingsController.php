@@ -35,7 +35,7 @@ final class SettingsController extends Controller
         }
 
         $this->view('admin/settings/index', [
-            'title' => 'Site Settings',
+            'title' => 'ตั้งค่าเว็บไซต์',
             'settings' => $settings,
             'mediaItems' => $this->media->all(),
             'errors' => $errors,
