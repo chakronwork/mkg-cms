@@ -1,0 +1,56 @@
+# Development environment for mkg-cms.
+#   Frontend: http://localhost:8080/
+#   Admin:    http://localhost:8080/admin/
+#   Adminer:  http://localhost:8081/
+# Credentials below are for local development only.
+services:
+  app:
+    build: .
+    ports:
+      - "8080:80"
+    environment:
+      APP_ENV: development
+      # BASE_URL must be "/" (not empty) so config/app.php's `?:` fallback is not triggered.
+      BASE_URL: /
+      ADMIN_URL: /admin
+      UPLOAD_URL: /uploads
+      DB_HOST: db
+      DB_NAME: mkg_cms
+      DB_USER: mkg
+      DB_PASS: mkg_secret
+      DB_CHARSET: utf8mb4
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root_secret
+      MYSQL_DATABASE: mkg_cms
+      MYSQL_USER: mkg
+      MYSQL_PASSWORD: mkg_secret
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      # Seed a fresh database on first boot (runs in filename order).
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+      - ./database/update_thai_menus.sql:/docker-entrypoint-initdb.d/02-update_thai_menus.sql:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-p$$MYSQL_ROOT_PASSWORD"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  adminer:
+    image: adminer:latest
+    ports:
+      - "8081:8080"
+    depends_on:
+      - db
+
+volumes:
+  db_data:

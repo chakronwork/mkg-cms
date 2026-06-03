@@ -1,0 +1,24 @@
+# Keep the build context small. The app image copies only docker/ config;
+# application code is bind-mounted at runtime by docker-compose.
+.git
+.gitignore
+
+# Documentation
+*.md
+
+# Local/runtime state
+.env
+.env.*
+config/database.php
+config/secrets.php
+logs/
+storage/sessions/*
+public/uploads/*
+
+# Editor / OS noise
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.tmp
+*.bak
